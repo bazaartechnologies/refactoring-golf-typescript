@@ -24,9 +24,7 @@ export class Takehomecalculator {
         let total: Money = first
 
         for (let next of monies) {
-            if (next.currency !== total.currency) {
-                throw new Incalculable()
-            }
+            this.plus(next, total);
         }
 
         for (const next of monies) {
@@ -42,4 +40,9 @@ export class Takehomecalculator {
         return new Money(total.value - tax.value, first.currency)
     }
 
+    plus(next: Money, total: Money) {
+        if (next.currency !== total.currency) {
+            throw new Incalculable()
+        }
+    }
 }
